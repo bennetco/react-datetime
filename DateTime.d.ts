@@ -13,7 +13,7 @@ declare namespace ReactDatetimeClass {
     /*
      The view mode can be any of the following strings.
      */
-    export type ViewMode = "years" | "months" | "days" | "time";
+    export type ViewMode = "years" | "quarters" | "months" | "weeks" | "days" | "time";
 
     export interface TimeConstraint {
         min: number;
@@ -123,6 +123,13 @@ declare namespace ReactDatetimeClass {
          React component. See appearance customization
          */
         renderMonth?: (props: any, month: number, year: number, selectedDate: any) => JSX.Element;
+        /*
+         Customize the way that the quarters are shown in the month picker.
+         The accepted function has the selectedDate, the current date and the default calculated
+         props for the cell, the quarter and the year to be shown, and must return a
+         React component. See appearance customization
+         */
+        renderQuarter?: (props: any, quarter: number, year: number, selectedDate: any) => JSX.Element;
         /*
          Customize the way that the years are shown in the year picker.
          The accepted function has the selectedDate, the current date and the default calculated

@@ -148,6 +148,12 @@
   height: 100%;
 }
 
+td.rdtQuarter {
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+}
+
 td.rdtMonth,
 td.rdtYear {
   height: 50px;
@@ -155,6 +161,7 @@ td.rdtYear {
   cursor: pointer;
 }
 td.rdtMonth:hover,
+td.rdtQuarter:hover,
 td.rdtYear:hover {
   background: #eee;
 }

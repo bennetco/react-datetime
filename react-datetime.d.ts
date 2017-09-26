@@ -105,6 +105,13 @@ declare module ReactDatetime {
      */
     renderMonth?: (props: any, month: number, year: number, selectedDate: any) => React.Component<any, any>;
     /*
+     Customize the way that the quarters are shown in the year picker.
+     The accepted function has the selectedDate, the current date and the default calculated
+     props for the cell, the quarter to be shown, and must return a React component.
+     See appearance customization
+     */
+    renderQuarter?: (props: any, quarter: number, year: number, selectedDate: any) => React.Component<any, any>;
+    /*
      Customize the way that the years are shown in the year picker.
      The accepted function has the selectedDate, the current date and the default calculated
      props for the cell, the year to be shown, and must return a React component.

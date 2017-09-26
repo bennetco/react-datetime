@@ -35,6 +35,10 @@ module.exports = {
 		return datetime.find('.rdtMonth').at(n).simulate('click');
 	},
 
+	clickNthQuarter: (datetime, n) => {
+		return datetime.find('.rdtQuarter').at(n).simulate('click');
+	},
+
 	clickNthYear: (datetime, n) => {
 		return datetime.find('.rdtYear').at(n).simulate('click');
 	},
@@ -52,6 +56,10 @@ module.exports = {
 
 	isMonthView: (datetime) => {
 		return datetime.find('.rdtPicker .rdtMonths').length === 1;
+	},
+
+	isQuarterView: (datetime) => {
+		return datetime.find('.rdtPicker .rdtQuarters').length === 1;
 	},
 
 	isYearView: (datetime) => {
@@ -100,6 +108,10 @@ module.exports = {
 
 	getNthMonth: (datetime, n) => {
 		return datetime.find('.rdtMonth').at(n);
+	},
+
+	getNthQuarter: (datetime, n) => {
+		return datetime.find('.rdtQuarter').at(n);
 	},
 
 	getNthYear: (datetime, n) => {

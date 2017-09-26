@@ -13,6 +13,7 @@ describe('Datetime', () => {
 		expect(component.find('.rdt > .rdtPicker').length).toEqual(1);
 	});
 
+	//TODO update for quarter/week view cb0 2017-09-25
 	it('viewMode=days: renders days, week days, month, year', () => {
 		const date = new Date(2000, 0, 15, 2, 2, 2, 2),
 			component = utils.createDatetime({ viewMode: 'days', defaultValue: date });
@@ -59,6 +60,7 @@ describe('Datetime', () => {
 		expect(utils.isDayView(component)).toBeTruthy();
 	});
 
+	//TODO copy & update for quarter view cb0 2017-09-25
 	it('persistent valid months going monthView->yearView->monthView', () => {
 		const dateBefore = new Date().getFullYear() + '-06-01',
 			component = utils.createDatetime({ viewMode: 'months', isValidDate: (current) =>
@@ -81,6 +83,7 @@ describe('Datetime', () => {
 		expect(utils.getNthMonth(component, 5).hasClass('rdtDisabled')).toEqual(true);
 	});
 
+	//TODO update for quarter/week view cb0 2017-09-25
 	it('step through views', () => {
 		const component = utils.createDatetime({ viewMode: 'time' });
 
@@ -127,6 +130,7 @@ describe('Datetime', () => {
 		expect(component.find('.rdtSwitch').text()).toEqual('1980-1989');
 	});
 
+	//TODO copy/update for quarter view cb0 2017-09-25
 	it('select month', () => {
 		const date = new Date(2000, 0, 15, 2, 2, 2, 2),
 			component = utils.createDatetime({ viewMode: 'months', defaultValue: date });
@@ -139,6 +143,7 @@ describe('Datetime', () => {
 		expect(component.find('.rdtSwitch').getDOMNode().getAttribute('data-value')).toEqual('1');
 	});
 
+	//TODO copy/update for quarter view cb0 2017-09-25
 	it('increase year', () => {
 		const date = new Date(2000, 0, 15, 2, 2, 2, 2),
 			component = utils.createDatetime({ viewMode: 'months', defaultValue: date });
@@ -150,6 +155,7 @@ describe('Datetime', () => {
 		expect(component.find('.rdtSwitch').text()).toEqual('2002');
 	});
 
+	//TODO copy/update for quarter view cb0 2017-09-25
 	it('decrease year', () => {
 		const date = new Date(2000, 0, 15, 2, 2, 2, 2),
 			component = utils.createDatetime({ viewMode: 'months', defaultValue: date });
@@ -196,6 +202,7 @@ describe('Datetime', () => {
 		expect(utils.isOpen(component)).toBeTruthy();
 	});
 
+	//TODO copy/update for quarter/week view cb0 2017-09-25
 	it('sets CSS class on selected item (day)', () => {
 		const component = utils.createDatetime({ viewMode: 'days' });
 		utils.openDatepicker(component);
@@ -217,6 +224,7 @@ describe('Datetime', () => {
 		expect(utils.getNthYear(component, 3).hasClass('rdtActive')).toBeTruthy();
 	});
 
+	//TODO copy/update for week view cb0 2017-09-25
 	it('sets CSS class on days outside of month', () => {
 		const date = new Date(2000, 0, 15, 2, 2, 2, 2),
 			prevMonthDaysIndexes = [0, 1, 2, 3, 4, 5],
@@ -233,6 +241,7 @@ describe('Datetime', () => {
 		});
 	});
 
+	//TODO copy/update for week view cb0 2017-09-25
 	it('selected day persists (in UI) when navigating to prev month', () => {
 		const date = new Date(2000, 0, 3, 2, 2, 2, 2),
 			component = utils.createDatetime({ viewMode: 'days', defaultValue: date });
@@ -255,6 +264,7 @@ describe('Datetime', () => {
 		expect(component.find('.rdtDay.rdtToday').text()).toEqual('19');
 	});
 
+	//TODO copy/update for quarter/week view cb0 2017-09-25
 	// Proof of bug [FIXED]
 	it('should show correct selected month when traversing view modes', () => {
 		const date = new Date(2000, 4, 3, 2, 2, 2, 2),
@@ -278,6 +288,7 @@ describe('Datetime', () => {
 		expect(component.find('.rdtMonth .rdtActive').text()).toEqual('May');
 	});
 
+	//TODO copy/update for quarter/week view cb0 2017-09-25
 	describe('with custom props', () => {
 		it('input=false', () => {
 			const component = utils.createDatetime({ input: false });
@@ -839,6 +850,7 @@ describe('Datetime', () => {
 		});
 	});
 
+	//TODO copy/update for quarter/week view cb0 2017-09-25
 	describe('event listeners', () => {
 		describe('onBlur', () => {
 			it('when selecting a date', () => {
@@ -1022,6 +1034,7 @@ describe('Datetime', () => {
 
 	});
 
+	//TODO copy/update for quarter/week view cb0 2017-09-25
 	describe('with set value', () => {
 		it('date value', () => {
 			const date = new Date(2000, 0, 15, 2, 2, 2, 2),

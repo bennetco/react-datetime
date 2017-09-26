@@ -24,7 +24,7 @@ var Datetime = createClass({
 		// timeFormat: TYPES.string | TYPES.bool,
 		inputProps: TYPES.object,
 		timeConstraints: TYPES.object,
-		viewMode: TYPES.oneOf(['years', 'months', 'days', 'time']),
+		viewMode: TYPES.oneOf(['years', 'quarters', 'months', 'weeks', 'days', 'time']),
 		isValidDate: TYPES.func,
 		open: TYPES.bool,
 		strictParsing: TYPES.bool,
@@ -105,8 +105,12 @@ var Datetime = createClass({
 	getUpdateOn: function( formats ) {
 		if ( formats.date.match(/[lLD]/) ) {
 			return 'days';
+		} else if ( formats.date.match(/[wW]/)) {
+			return 'weeks';
 		} else if ( formats.date.indexOf('M') !== -1 ) {
 			return 'months';
+		} else if ( formats.date.indexOf('Q') !== -1 ) {
+			return 'quarters';
 		} else if ( formats.date.indexOf('Y') !== -1 ) {
 			return 'years';
 		}
@@ -237,8 +241,8 @@ var Datetime = createClass({
 	setDate: function( type ) {
 		var me = this,
 			nextViews = {
-				month: 'days',
-				year: 'months'
+				month: me.state.updateOn === 'weeks' ? 'weeks' : 'days',
+				year: me.state.updateOn === 'quarters' ? 'quarters' : 'months'
 			}
 		;
 		return function( e ) {
@@ -314,9 +318,17 @@ var Datetime = createClass({
 			date = viewDate.clone()
 				.month( viewDate.month() + modifier )
 				.date( parseInt( target.getAttribute('data-value'), 10 ) );
+		} else if (target.className.indexOf('rdtWeek') !== -1) {
+			date = viewDate.clone()
+				.week( parseInt(target.getAttribute('data-value'), 10 ))
+				.date(currentDate.date());
 		} else if (target.className.indexOf('rdtMonth') !== -1) {
 			date = viewDate.clone()
 				.month( parseInt( target.getAttribute('data-value'), 10 ) )
+				.date( currentDate.date() );
+		} else if (target.className.indexOf('rdtQuarter') !== -1) {
+			date = viewDate.clone()
+				.quarter( parseInt( target.getAttribute('data-value'), 10 ) )
 				.date( currentDate.date() );
 		} else if (target.className.indexOf('rdtYear') !== -1) {
 			date = viewDate.clone()
@@ -383,7 +395,7 @@ var Datetime = createClass({
 	},
 
 	componentProps: {
-		fromProps: ['value', 'isValidDate', 'renderDay', 'renderMonth', 'renderYear', 'timeConstraints'],
+		fromProps: ['value', 'isValidDate', 'renderDay', 'renderMonth', 'renderQuarter', 'renderYear', 'timeConstraints'],
 		fromState: ['viewDate', 'selectedDate', 'updateOn'],
 		fromThis: ['setDate', 'setTime', 'showView', 'addTime', 'subtractTime', 'updateSelectedDate', 'localMoment', 'handleClickOutside']
 	},
